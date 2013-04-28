@@ -1,5 +1,11 @@
+# Yeoman
 node_modules
 dist
 .tmp
 .sass-cache
 app/components
+# Mac OS X
+.DS_Store
+# Eclipse
+/.project
+/.settings
