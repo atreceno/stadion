@@ -2,9 +2,9 @@
 
 angular.module('stadionApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.widgets = [
-      'aaa',
-      'bbb',
-      'ccc'
+    $scope.awesomeThings = [
+      'HTML5 Boilerplate',
+      'AngularJS',
+      'Karma'
     ];
   });
