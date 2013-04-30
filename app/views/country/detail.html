@@ -1,0 +1,41 @@
+<div class="hero-unit">
+	<form name="myForm">
+		<div class="control-group"
+			data-ng-class="{error: myForm.name.$invalid}">
+			<label>Name</label> <input type="text" name="name"
+				data-ng-model="country.name" required> <span
+				data-ng-show="myForm.name.$error.required" class="help-inline">
+				Required</span>
+		</div>
+		<div class="control-group"
+			data-ng-class="{error: myForm.gold.$invalid}">
+			<label>Gold</label> <input type="text" name="gold"
+				data-ng-model="country.gold" required> <span
+				data-ng-show="myForm.gold.$error.required" class="help-inline">
+				Required</span> <span data-ng-show="myForm.gold.$error.number"
+				class="help-inline">Not a number</span>
+		</div>
+		<div class="control-group"
+			data-ng-class="{error: myForm.silver.$invalid}">
+			<label>Silver</label> <input type="text" name="silver"
+				data-ng-model="country.silver" required> <span
+				data-ng-show="myForm.silver.$error.required" class="help-inline">
+				Required</span> <span data-ng-show="myForm.silver.$error.number"
+				class="help-inline">Not a number</span>
+		</div>
+		<div class="control-group"
+			data-ng-class="{error: myForm.bronze.$invalid}">
+			<label>bronze</label> <input type="text" name="bronze"
+				data-ng-model="country.bronze" required> <span
+				data-ng-show="myForm.bronze.$error.required" class="help-inline">
+				Required</span> <span data-ng-show="myForm.bronze.$error.number"
+				class="help-inline">Not a number</span>
+		</div>
+		<br /> <a href="#/countries" class="btn">Cancel</a>
+		<button data-ng-click="save()"
+			data-ng-disabled="isClean() || myForm.$invalid"
+			class="btn btn-primary">Save</button>
+		<button data-ng-click="destroy()" data-ng-show="country._id"
+			class="btn btn-danger">Delete</button>
+	</form>
+</div>

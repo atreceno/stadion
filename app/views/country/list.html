@@ -9,6 +9,7 @@
 				<th><a data-ng-click="predicate='gold';reverse=!reverse">Gold</a></th>
 				<th><a data-ng-click="predicate='silver';reverse=!reverse">Silver</a></th>
 				<th><a data-ng-click="predicate='bronze';reverse=!reverse">Bronze</a></th>
+				<th><a href="#/countries/new">new</a></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,6 +19,7 @@
 				<td>{{country.gold}}</td>
 				<td>{{country.silver}}</td>
 				<td>{{country.bronze}}</td>
+				<td><a href="#/countries/edit/{{country._id.$oid}}">edit</a></td>
 			</tr>
 		</tbody>
 	</table>

@@ -1,10 +1,9 @@
 'use strict';
 
-angular.module('stadionApp')
-  .controller('MainCtrl', function ($scope) {
+angular.module('stadion')
+    .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+        'HTML5 Boilerplate',
+        'AngularJS',
+        'Karma'];
+});
