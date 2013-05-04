@@ -1,0 +1,29 @@
+<div class="hero-unit">
+    <p>This is the medal view. And it's replacing the main view.</p>
+
+    <p>Medal standing: Predicate: {{predicate}}; Reverse: {{reverse}}</p>
+    <label>
+        <input data-ng-model="query" type="text" placeholder="Search"/>
+    </label>
+    <table>
+        <thead>
+        <tr>
+            <th>Country</th>
+            <th><a data-ng-click="predicate='gold';reverse=!reverse">Gold</a></th>
+            <th><a data-ng-click="predicate='silver';reverse=!reverse">Silver</a></th>
+            <th><a data-ng-click="predicate='bronze';reverse=!reverse">Bronze</a></th>
+            <th><a href="#/countries/new">new</a></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr
+                data-ng-repeat="country in countries | filter:{name: query} | orderBy:predicate:reverse">
+            <td>{{country.name}}</td>
+            <td>{{country.gold}}</td>
+            <td>{{country.silver}}</td>
+            <td>{{country.bronze}}</td>
+            <td><a href="#/countries/edit/{{country._id.$oid}}">edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

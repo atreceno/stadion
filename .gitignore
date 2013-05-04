@@ -6,6 +6,7 @@ dist
 app/components
 # Mac OS X
 .DS_Store
-# Eclipse
+# IDE specific
 /.project
 /.settings
+/.idea

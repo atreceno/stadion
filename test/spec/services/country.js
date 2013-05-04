@@ -12,7 +12,7 @@ describe('Service: Country', function () {
     }));
 
     it('should do something', function () {
-        expect( !! Country).toBe(true);
+        expect(!!Country).toBe(true);
     });
 
 });

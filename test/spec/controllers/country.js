@@ -4,13 +4,16 @@ describe('Controller: CountryListCtrl', function () {
     // load the controller's module
     beforeEach(module('stadion'));
     var scope;
-    var response = [{
-        "name": "Spain",
-        "gold": 4
-    }, {
-        "name": "Italy",
-        "gold": 3
-    }];
+    var response = [
+        {
+            "name": "Spain",
+            "gold": 4
+        },
+        {
+            "name": "Italy",
+            "gold": 3
+        }
+    ];
 
     // Initialize the controller and a mock scope
     beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
