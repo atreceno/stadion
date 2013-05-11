@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    div(class='hero-unit')
+        h1= title
+        p Welcome to #{title}. This is a static content and it's never reloaded.
+    div(class='container', data-ng-view)

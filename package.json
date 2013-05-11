@@ -1,9 +1,20 @@
 {
     "name": "stadion",
-    "version": "0.0.0",
+    "version": "0.0.1",
+    "author": "Agustin Treceno <agustin.treceno@gmail.com>",
+    "description": "Just a simple web application",
+    "scripts": {
+        "start": "node server.js --SOME foo"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/atreceno/stadion"
+    },
     "dependencies": {
-        "express": "3.2.2",
-        "jade": "*"
+        "express": "3.2.*",
+        "jade": "*",
+        "mongodb": "*",
+        "mongoose": "*"
     },
     "devDependencies": {
         "grunt": "~0.4.1",
@@ -29,6 +40,7 @@
         "grunt-google-cdn": "~0.1.1",
         "grunt-ngmin": "~0.0.2"
     },
+    "license": "MIT",
     "engines": {
         "node": ">=0.8.0"
     },

@@ -16,13 +16,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr
-                data-ng-repeat="country in countries | filter:{name: query} | orderBy:predicate:reverse">
+        <tr data-ng-repeat="country in countries | filter:{name: query} | orderBy:predicate:reverse">
             <td>{{country.name}}</td>
             <td>{{country.gold}}</td>
             <td>{{country.silver}}</td>
             <td>{{country.bronze}}</td>
-            <td><a href="#/countries/edit/{{country._id.$oid}}">edit</a></td>
+            <td><a href="#/countries/edit/{{country._id}}">edit</a></td>
         </tr>
         </tbody>
     </table>

@@ -4,9 +4,13 @@ dist
 .tmp
 .sass-cache
 app/components
+# NPM
+npm-debug.log
 # Mac OS X
 .DS_Store
 # IDE specific
 /.project
 /.settings
 /.idea
+# DB credentials
+config/credentials.js

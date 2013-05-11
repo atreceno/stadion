@@ -1,0 +1,15 @@
+doctype 5
+html
+    head
+        title= title
+        meta(name='description', content='')
+        meta(name='viewport', content='width=device-width')
+        link(rel='stylesheet', href='/styles/main-exp.css')
+    body(data-ng-app='stadion')
+        block content
+        script(src='components/angular/angular.js')
+        script(src='components/angular-resource/angular-resource.js')
+        script(src='scripts/app.js')
+        script(src='scripts/controllers/country.js')
+        script(src='scripts/controllers/main.js')
+        script(src='scripts/services/local-rest-api.js')

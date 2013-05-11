@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mongolab', ['ngResource'])
+angular.module('mongoLabApi', ['ngResource'])
     .factory('Country', function ($resource) {
 
         var Country = $resource('https://api.mongolab.com/api/1/databases/stadion/collections/countries/:id', {
