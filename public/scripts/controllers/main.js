@@ -5,5 +5,6 @@ angular.module('stadion')
         $scope.awesomeThings = [
             'HTML5 Boilerplate',
             'AngularJS',
-            'Karma'];
+            'Karma'
+        ];
     });

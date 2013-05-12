@@ -21,6 +21,7 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         yeoman: yeomanConfig,
+        npm: grunt.file.readJSON('package.json'),
         watch: {
             coffee: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
@@ -146,6 +147,23 @@ module.exports = function (grunt) {
                 options: {
                     debugInfo: true
                 }
+            }
+        },
+        jade: {
+            compile: {
+                options: {
+                    data: { debug: false, title: '<%= npm.name %>' },
+                    pretty: true
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'app/views',
+                        src: ['**/*.jade'],
+                        dest: '.tmp',
+                        ext: '.html'
+                    }
+                ]
             }
         },
         concat: {
@@ -281,6 +299,7 @@ module.exports = function (grunt) {
         'clean:server',
         'coffee:dist',
         'compass:server',
+        'jade:compile',
         'livereload-start',
         'connect:livereload',
         'open',

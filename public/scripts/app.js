@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('stadion', ['localRestApi'])
+angular.module('stadion', ['mongoLabApi'])
     .config(function ($routeProvider) {
         $routeProvider.when('/', {
-            templateUrl: 'partials/main',
+            templateUrl: 'partials/main.html',
             controller: 'MainCtrl'
         })
             .when('/countries', {
