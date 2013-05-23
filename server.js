@@ -8,8 +8,11 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
+var socketio = require('socket.io');
 
 var app = express();
+var server = http.createServer(app);
+var io = socketio.listen(server);
 
 // Schema and model definition before routing
 console.log('Bootstrapping the model with mongoose version: %s', mongoose.version);
@@ -43,12 +46,16 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
 
-// Note app.get('env') is initialized to process.env.NODE_ENV ||
 if ('development' == app.get('env')) {
+    app.use(express.static(path.join(__dirname, 'app')));
     app.use(express.errorHandler());
     app.locals.pretty = 'true';
+}
+if ('production' == app.get('env')) {
+    app.use(express.static(path.join(__dirname, 'dist')));
+    app.use(express.errorHandler());
+    app.locals.pretty = 'false';
 }
 
 // Map partial views for Angular.js
@@ -62,6 +69,25 @@ app.post('/api/countries', country.addNew);
 app.put('/api/countries/:id', country.modify);
 app.delete('/api/countries/:id', country.delete);
 
-http.createServer(app).listen(app.get('port'), function () {
+// Socket.io
+var data = [
+    {text:'learn angular', done:true},
+    {text:'build an angular app', done:false}];
+
+io.sockets.on('connection', function (socket) {
+    socket.emit('news', data);
+    socket.on('news', function (from, msg) {
+        console.log('ATO: ', from, msg);
+        data = msg;
+        socket.broadcast.emit('news', data);
+    });
+
+    socket.on('my other event', function (from, msg) {
+        console.log('privately: ', from, 'saying', msg);
+    });
+});
+
+// Start the server
+server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });

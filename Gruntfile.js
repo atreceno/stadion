@@ -9,19 +9,25 @@ module.exports = function (grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // configurable paths
+    var npmConfig;
+    var bowerConfig;
     var yeomanConfig = {
-        app: 'public',
+        app: 'app',
         dist: 'dist'
     };
 
     try {
-        yeomanConfig.app = require('./bower.json').appPath || yeomanConfig.app;
+        npmConfig = grunt.file.readJSON('package.json');
+        bowerConfig = grunt.file.readJSON('bower.json');
+        console.log('npm: ', npmConfig.name, npmConfig.version);
+        console.log('bower: ', bowerConfig.name, bowerConfig.version);
+        console.log('yeoman: ', yeomanConfig);
     } catch (e) {
     }
 
     grunt.initConfig({
         yeoman: yeomanConfig,
-        npm: grunt.file.readJSON('package.json'),
+        npm: npmConfig,
         watch: {
             coffee: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
@@ -34,6 +40,10 @@ module.exports = function (grunt) {
             compass: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass']
+            },
+            less: {
+                files: ['<%= yeoman.app %>/styles/less/*.less'],
+                tasks: ['less']
             },
             livereload: {
                 files: [
@@ -146,6 +156,26 @@ module.exports = function (grunt) {
             server: {
                 options: {
                     debugInfo: true
+                }
+            }
+        },
+        less: {
+            server: {
+                options: {
+                    paths: ['<%= yeoman.app %>/styles/less', '<%= yeoman.app %>/components/bootstrap/less'],
+                    yuicompress: false
+                },
+                files: {
+                    '.tmp/styles/main.css': ['<%= yeoman.app %>/styles/less/bootstrap.less', '<%= yeoman.app %>/styles/less/responsive.less']
+                }
+            },
+            dist: {
+                options: {
+                    paths: ['<%= yeoman.app %>/styles/less', '<%= yeoman.app %>/components/bootstrap/less'],
+                    yuicompress: true
+                },
+                files: {
+                    '<%= yeoman.dist %>/styles/main.css': ['<%= yeoman.app %>/styles/less/bootstrap.less', '<%= yeoman.app %>/styles/less/responsive.less']
                 }
             }
         },
@@ -299,6 +329,7 @@ module.exports = function (grunt) {
         'clean:server',
         'coffee:dist',
         'compass:server',
+        'less:server',
         'jade:compile',
         'livereload-start',
         'connect:livereload',
@@ -320,6 +351,7 @@ module.exports = function (grunt) {
         'test',
         'coffee',
         'compass:dist',
+        'less:dist',
         'useminPrepare',
         'imagemin',
         'cssmin',
