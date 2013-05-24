@@ -1,12 +1,82 @@
 doctype 5
-html
+html(lang='en')
     head
-        title= title
-        meta(name='description', content='')
-        meta(name='viewport', content='width=device-width')
-        link(rel='stylesheet', href='/styles/main-exp.css')
+        meta(charset='utf-8')
+        title='Stadion'
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(name='description', content='Competition Management')
+        meta(name='author', content='atreceno')
+        link(href='styles/main.css', rel='stylesheet')
+        link(href='styles/docs-m.css', rel='stylesheet')
+        //if lt IE 9
+            script(src='components/bootstrap/docs/assets/js/html5shiv.js')
     body(data-ng-app='stadion')
-        block content
+        .navbar.navbar-inverse.navbar-fixed-top
+            .navbar-inner
+                .container-fluid
+                    button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.brand(href='./') Stadion
+                    .nav-collapse.collapse
+                        ul.nav
+                            li.active
+                                a(href='./') Home
+                            li
+                                a(href='#about') About
+                            li
+                                a(href='#contact') Contact
+                            li.dropdown
+                                a.dropdown-toggle(href='#', data-toggle='dropdown') Tournaments
+                                    b.caret
+                                ul.dropdown-menu
+                                    li
+                                        a(href='./tournaments.html') Search tournaments
+                                    li
+                                        a Create tournaments
+                                    //-
+                                        li.divider
+                                        li.nav-header Nav header
+                                        li
+                                            a Another link
+                                            a One more link
+                        form.navbar-form.pull-right
+                            input.span2(type='text', placeholder='Email')
+                            input.span2(type='password', placeholder='Password')
+                            button.btn(type='submit') Sign in
+        block header
+        .container
+            block content
+        footer.footer
+            .container
+                p Designed and built by&nbsp;
+                    a(href='http://twitter.com/atreceno', target='_blank') @atreceno
+                p Code licensed under&nbsp;
+                    a(href='http://www.apache.org/licenses/LICENSE-2.0', target='_blank') Apache License v2.0
+                ul.footer-links
+                    li
+                        a(href='https://github.com/atreceno/stadion/wiki', target='_blank') Blog
+                    li.muted &middot;
+                    li
+                        a(href='https://github.com/atreceno/stadion/issues', target='_blank') Issues
+                    li.muted &middot;
+                    li
+                        a(href='https://github.com/atreceno/stadion', target='_blank') GitHub
+        script(src='/components/jquery/jquery.js')
+        script(src='/components/bootstrap/js/bootstrap-transition.js')
+        script(src='/components/bootstrap/js/bootstrap-alert.js')
+        script(src='/components/bootstrap/js/bootstrap-modal.js')
+        script(src='/components/bootstrap/js/bootstrap-dropdown.js')
+        script(src='/components/bootstrap/js/bootstrap-scrollspy.js')
+        script(src='/components/bootstrap/js/bootstrap-tab.js')
+        script(src='/components/bootstrap/js/bootstrap-tooltip.js')
+        script(src='/components/bootstrap/js/bootstrap-popover.js')
+        script(src='/components/bootstrap/js/bootstrap-button.js')
+        script(src='/components/bootstrap/js/bootstrap-collapse.js')
+        script(src='/components/bootstrap/js/bootstrap-carousel.js')
+        script(src='/components/bootstrap/js/bootstrap-typeahead.js')
+//-
         script(src='components/angular/angular.js')
         script(src='components/angular-resource/angular-resource.js')
         script(src='scripts/app.js')

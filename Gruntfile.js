@@ -39,17 +39,22 @@ module.exports = function (grunt) {
             },
             compass: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-                tasks: ['compass']
+                tasks: ['compass:server']
             },
             less: {
                 files: ['<%= yeoman.app %>/styles/less/*.less'],
                 tasks: ['less']
+            },
+            jade: {
+                files: ['<%= yeoman.app %>/views/{,*/}*.jade'],
+                tasks: ['jade:server']
             },
             livereload: {
                 files: [
                     '<%= yeoman.app %>/{,*/}*.html',
                     '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
+                    '{.tmp,<%= yeoman.app %>}/{,*/}*.html',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ],
                 tasks: ['livereload']
@@ -180,7 +185,7 @@ module.exports = function (grunt) {
             }
         },
         jade: {
-            compile: {
+            server: {
                 options: {
                     data: { debug: false, title: '<%= npm.name %>' },
                     pretty: true
@@ -191,6 +196,21 @@ module.exports = function (grunt) {
                         cwd: 'app/views',
                         src: ['**/*.jade'],
                         dest: '.tmp',
+                        ext: '.html'
+                    }
+                ]
+            },
+            dist: {
+                options: {
+                    data: { debug: false, title: '<%= npm.name %>' },
+                    pretty: true
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'app/views',
+                        src: ['**/*.jade'],
+                        dest: 'dist',
                         ext: '.html'
                     }
                 ]
@@ -330,7 +350,7 @@ module.exports = function (grunt) {
         'coffee:dist',
         'compass:server',
         'less:server',
-        'jade:compile',
+        'jade:server',
         'livereload-start',
         'connect:livereload',
         'open',
