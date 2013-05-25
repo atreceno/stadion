@@ -1,0 +1,14 @@
+! config/credentials.js
+# Yeoman
+node_modules
+.tmp
+.sass-cache
+# NPM
+npm-debug.log
+# Mac OS X
+.DS_Store
+# IDE specific
+/.project
+/.settings
+/.idea
+*.swp
