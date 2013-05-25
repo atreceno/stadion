@@ -11,6 +11,17 @@ html(lang='en')
         //if lt IE 9
             script(src='components/bootstrap/docs/assets/js/html5shiv.js')
     body(data-ng-app='stadion')
+        #loginModal.modal.hide.fade(tabindex='-1')
+            .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+                h3 Please sign in
+            .modal-body
+                form.modal-form
+                    input.input-block-level(type='text', placeholder='Email address')
+                    input.input-block-level(type='password', placeholder='Password')
+                    label.checkbox
+                        input(type='checkbox', value='Remember me') Remember me
+                    button.btn.btn-primary(type='submit') Sign in
         .navbar.navbar-inverse.navbar-fixed-top
             .navbar-inner
                 .container-fluid
@@ -41,10 +52,15 @@ html(lang='en')
                                         li
                                             a Another link
                                             a One more link
-                        form.navbar-form.pull-right
-                            input.span2(type='text', placeholder='Email')
-                            input.span2(type='password', placeholder='Password')
-                            button.btn(type='submit') Sign in
+                        form.navbar-search.pull-left(action='#')
+                            input.search-query.span2(type='text', placeholder='Search tournaments')
+                        a.btn.pull-right(data-toggle='modal', href='#loginModal') Login
+                        //-
+                            form.navbar-form.pull-right
+                                input.span2(type='text', placeholder='Email')
+                                input.span2(type='password', placeholder='Password')
+                                button.btn(type='submit') Sign in
+
         block header
         .container
             block content
@@ -76,7 +92,6 @@ html(lang='en')
         script(src='/components/bootstrap/js/bootstrap-collapse.js')
         script(src='/components/bootstrap/js/bootstrap-carousel.js')
         script(src='/components/bootstrap/js/bootstrap-typeahead.js')
-//-
         script(src='components/angular/angular.js')
         script(src='components/angular-resource/angular-resource.js')
         script(src='scripts/app.js')
@@ -84,6 +99,7 @@ html(lang='en')
         script(src='scripts/controllers/main.js')
         script(src='scripts/services/local-rest-api.js')
         script(src='scripts/services/mongo-lab-api.js')
+    //-
         script(src='scripts/services/socket.js')
         script(src='/socket.io/socket.io.js')
         script

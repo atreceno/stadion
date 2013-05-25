@@ -1,10 +1,10 @@
 {
   "name": "stadion",
-  "version": "0.0.1",
+  "version": "0.0.1-4",
   "author": "Agustin Treceno (agustin.treceno@gmail.com)",
   "description": "Just a simple web application",
   "scripts": {
-    "start": "node server.js --SOME foo"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -47,5 +47,6 @@
   "engines": {
     "node": ">=0.8.0"
   },
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "subdomain": "atreceno-stadion"
 }

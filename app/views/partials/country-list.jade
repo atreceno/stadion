@@ -1,0 +1,27 @@
+.row
+    .span12
+        p Some interesting values for development: Predicate: {{predicate}} and Reverse: {{reverse}}
+        label
+            input(type='text', data-ng-model='query', placeholder='Search')
+        table.table.table-striped
+            thead
+                tr
+                    th Country
+                    th
+                        a(data-ng-click='predicate=\'gold\';reverse=!reverse') Gold
+                    th
+                        a(data-ng-click='predicate=\'silver\';reverse=!reverse') Silver
+                    th
+                        a(data-ng-click='predicate=\'bronze\';reverse=!reverse') Bronze
+                    th
+                        a(href='#/countries/new')
+                            i.icon-plus-sign
+            tbody
+                tr(data-ng-repeat='country in countries | filter:{name: query} | orderBy:predicate:reverse')
+                    td {{country.name}}
+                    td {{country.gold}}
+                    td {{country.silver}}
+                    td {{country.bronze}}
+                    td
+                        a(href='#/countries/edit/{{country._id.$oid}}')
+                            i.icon-pencil

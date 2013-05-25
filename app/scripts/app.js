@@ -2,21 +2,26 @@
 
 angular.module('stadion', ['mongoLabApi'])
     .config(function ($routeProvider) {
-        $routeProvider.when('/', {
-            templateUrl: 'partials/main.html',
-            controller: 'MainCtrl'
-        })
+        $routeProvider
+            .when('/', {
+                templateUrl: 'partials/main.html',
+                controller: 'MainCtrl'
+            })
             .when('/countries', {
-                templateUrl: 'views/country/list.html',
+                templateUrl: 'partials/country-list.html',
                 controller: 'CountryListCtrl'
             })
             .when('/countries/edit/:countryId', {
-                templateUrl: 'views/country/detail.html',
+                templateUrl: 'partials/country-detail.html',
                 controller: 'CountryEditCtrl'
             })
             .when('/countries/new', {
-                templateUrl: 'views/country/detail.html',
+                templateUrl: 'partials/country-detail.html',
                 controller: 'CountryNewCtrl'
+            })
+            .when('/tournaments', {
+                templateUrl: 'views/partials/tournament-list.html',
+                controller: 'TournamentListCtrl'
             })
             .otherwise({
                 redirectTo: '/'

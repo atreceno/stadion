@@ -31,8 +31,11 @@ var config = require('./config/credentials')[app.get('env')];
 // Connect to DB [see http://mongoosejs.com/docs/connections.html]
 console.log('Connecting to DB: %s', config.db.uri);
 mongoose.connect(config.db.uri, config.db.options, function (err) {
-    if (err) throw err;
-    console.log('Connection to DB established');
+    if (err) {
+        console.warn('Connection to DB failed!'); //throw err;
+    } else {
+        console.log('Connection to DB established');
+    }
 });
 
 // Express configuration for all environments
@@ -53,7 +56,7 @@ if ('development' == app.get('env')) {
     app.locals.pretty = 'true';
 }
 if ('production' == app.get('env')) {
-    app.use(express.static(path.join(__dirname, 'dist')));
+    app.use(express.static(path.join(__dirname, 'app')));
     app.use(express.errorHandler());
     app.locals.pretty = 'false';
 }
