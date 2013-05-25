@@ -11,59 +11,60 @@ html(lang='en')
         //if lt IE 9
             script(src='components/bootstrap/docs/assets/js/html5shiv.js')
     body(data-ng-app='stadion')
-        #loginModal.modal.hide.fade(tabindex='-1')
-            .modal-header
-                button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-                h3 Please sign in
-            .modal-body
-                form.modal-form
-                    input.input-block-level(type='text', placeholder='Email address')
-                    input.input-block-level(type='password', placeholder='Password')
-                    label.checkbox
-                        input(type='checkbox', value='Remember me') Remember me
-                    button.btn.btn-primary(type='submit') Sign in
-        .navbar.navbar-inverse.navbar-fixed-top
-            .navbar-inner
-                .container-fluid
-                    button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
-                        span.icon-bar
-                        span.icon-bar
-                        span.icon-bar
-                    a.brand(href='./') Stadion
-                    .nav-collapse.collapse
-                        ul.nav
-                            li.active
-                                a(href='./') Home
-                            li
-                                a(href='#about') About
-                            li
-                                a(href='#contact') Contact
-                            li.dropdown
-                                a.dropdown-toggle(href='#', data-toggle='dropdown') Tournaments
-                                    b.caret
-                                ul.dropdown-menu
-                                    li
-                                        a(href='./tournaments.html') Search tournaments
-                                    li
-                                        a Create tournaments
-                                    //-
-                                        li.divider
-                                        li.nav-header Nav header
+        #wrap
+            #loginModal.modal.hide.fade(tabindex='-1')
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+                    h3 Please sign in
+                .modal-body
+                    form.modal-form
+                        input.input-block-level(type='text', placeholder='Email address')
+                        input.input-block-level(type='password', placeholder='Password')
+                        label.checkbox
+                            input(type='checkbox', value='Remember me') Remember me
+                        button.btn.btn-primary(type='submit') Sign in
+            .navbar.navbar-inverse.navbar-fixed-top
+                .navbar-inner
+                    .container-fluid
+                        button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                        a.brand(href='./') Stadion
+                        .nav-collapse.collapse
+                            ul.nav
+                                li.active
+                                    a(href='./') Home
+                                li
+                                    a(href='#about') About
+                                li
+                                    a(href='#contact') Contact
+                                li.dropdown
+                                    a.dropdown-toggle(href='#', data-toggle='dropdown') Tournaments
+                                        b.caret
+                                    ul.dropdown-menu
                                         li
-                                            a Another link
-                                            a One more link
-                        form.navbar-search.pull-left(action='#')
-                            input.search-query.span2(type='text', placeholder='Search tournaments')
-                        a.btn.pull-right(data-toggle='modal', href='#loginModal') Login
-                        //-
-                            form.navbar-form.pull-right
-                                input.span2(type='text', placeholder='Email')
-                                input.span2(type='password', placeholder='Password')
-                                button.btn(type='submit') Sign in
-
-        block header
-        .container
-            block content
+                                            a(href='./tournaments.html') Search tournaments
+                                        li
+                                            a Create tournaments
+                                        //-
+                                            li.divider
+                                            li.nav-header Nav header
+                                            li
+                                                a Another link
+                                                a One more link
+                            form.navbar-search.pull-left(action='#')
+                                input.search-query.span2(type='text', placeholder='Search tournaments')
+                            a.btn.pull-right(data-toggle='modal', href='#loginModal') Login
+                            //-
+                                form.navbar-form.pull-right
+                                    input.span2(type='text', placeholder='Email')
+                                    input.span2(type='password', placeholder='Password')
+                                    button.btn(type='submit') Sign in
+            block header
+            .container
+                block content
+            #push
         footer.footer
             .container
                 p Designed and built by&nbsp;
