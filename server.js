@@ -56,10 +56,16 @@ if ('development' == app.get('env')) {
     app.locals.pretty = 'true';
 }
 if ('production' == app.get('env')) {
-    app.use(express.static(path.join(__dirname, 'app')));
+    app.use(express.static(path.join(__dirname, 'dist')));
     app.use(express.errorHandler());
     app.locals.pretty = 'false';
 }
+
+/* TEST!!
+app.get('/*', function(req, res, next) {
+  res.setHeader('Last-Modified', (new Date()).toUTCString());
+  next();
+}); */
 
 // Map partial views for Angular.js
 app.get('/partials/:name', routes.partials);

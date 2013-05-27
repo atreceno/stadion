@@ -1,4 +1,5 @@
-! config/credentials.js
+!config/credentials.js
+!dist
 # Yeoman
 node_modules
 .tmp

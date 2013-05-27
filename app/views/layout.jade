@@ -44,21 +44,27 @@ html(lang='en')
                                         b.caret
                                     ul.dropdown-menu
                                         li
-                                            a(href='./tournaments.html') Search tournaments
+                                            a(href='#tournaments') Search tournaments
                                         li
                                             a Create tournaments
-                                        //-
-                                            li.divider
-                                            li.nav-header Nav header
-                                            li
-                                                a Another link
-                                                a One more link
-                            form.navbar-search.pull-left(action='#')
-                                input.search-query.span2(type='text', placeholder='Search tournaments')
-                            a.btn.pull-right(data-toggle='modal', href='#loginModal') Login
-                            //-
-                                form.navbar-form.pull-right
-                                    input.span2(type='text', placeholder='Email')
+                                        li.divider
+                                        li.nav-header Statistics
+                                        li
+                                            a(href='#countries') Medal Standing
+                                            a One more link
+                            form.navbar-search(action='#')
+                                input.search-query.span3(type='text', placeholder='Search tournaments')
+
+                    //-
+                                form.navbar-search(action='#')
+                                    input.search-query.span2(type='text', placeholder='Search tournaments')
+                                    a.btn.pull-right(data-toggle='modal', href='#loginModal') Login
+
+                                form.navbar-search.pull-right(action='hola')
+                                    input.search-query.span3(type='text', placeholder='Search tournaments')
+                                    a.btn(data-toggle='modal', href='#loginModal') Login
+
+                                input.span2(type='text', placeholder='Email')
                                     input.span2(type='password', placeholder='Password')
                                     button.btn(type='submit') Sign in
             block header

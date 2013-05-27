@@ -1,8 +1,7 @@
 .row
-    .span12
-        p Some interesting values for development: Predicate: {{predicate}} and Reverse: {{reverse}}
+    .span4
         label
-            input(type='text', data-ng-model='query', placeholder='Search')
+            input.span4(type='text', data-ng-model='query', placeholder='Search country')
         table.table.table-striped
             thead
                 tr
@@ -25,3 +24,5 @@
                     td
                         a(href='#/countries/edit/{{country._id.$oid}}')
                             i.icon-pencil
+    .span8
+        p This space is for a graphic...
