@@ -25,6 +25,6 @@
                         a(href='#/countries/edit/{{country._id.$oid}}')
                             i.icon-pencil
     .span8
-        p This space is for a graphic...
-        span(data-st-medal="")
-        p End of graphic! :)
+        label Sort by number of gold medals
+            input(type='checkbox', data-ng-model='sort')
+        #medal(data-st-medal='', data='countries', sort='sort')

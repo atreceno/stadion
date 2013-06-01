@@ -7,6 +7,7 @@ stadion.controller('CountryListCtrl', function ($scope, Country) {
     $scope.query = '';
     $scope.predicate = ['gold', 'silver', 'bronze'];
     $scope.reverse = 'true';
+    $scope.sort = 'false';
 });
 
 stadion.controller('CountryEditCtrl', function ($scope, $location, $routeParams, Country) {
