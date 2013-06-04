@@ -68,7 +68,7 @@ section > ul li {
 ------------------------- */
 .jumbotron {
     position: relative;
-    padding: 40px 0;
+    padding: 70px 0 20px;
     color: #fff;
     text-align: center;
     text-shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 0 30px rgba(0, 0, 0, .075);
@@ -487,6 +487,7 @@ section > ul li {
     /* Widen masthead and social buttons to fill body padding */
     .jumbotron {
         margin-top: -20px; /* Offset bottom margin on .navbar */
+        padding: 40px 0 20px;
     }
 
     /* Adjust sidenav width */

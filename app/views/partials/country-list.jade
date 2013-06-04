@@ -25,6 +25,6 @@
                         a(href='#/countries/edit/{{country._id.$oid}}')
                             i.icon-pencil
     .span8
-        label Sort by number of gold medals
+        label.checkbox Order by Gold medals
             input(type='checkbox', data-ng-model='sort')
         #medal(data-st-medal='', data='countries', sort='sort')

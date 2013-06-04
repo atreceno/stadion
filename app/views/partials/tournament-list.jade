@@ -1,0 +1,29 @@
+.container
+    .row
+        .span12
+            label
+                input.span4(type='text', data-ng-model='query', placeholder='Search tournament')
+            table.table.table-striped
+                thead
+                    tr
+                        th
+                            a(data-ng-click='predicate=\'name\';reverse=!reverse') Name
+                        th
+                            a(data-ng-click='predicate=\'description\';reverse=!reverse') Description
+                        th
+                            a(data-ng-click='predicate=\'location\';reverse=!reverse') Location
+                        th
+                            a(data-ng-click='predicate=\'sport\';reverse=!reverse') Sport
+                        th
+                            a(href='#/tournaments/new')
+                                i.icon-plus-sign
+                tbody
+                    tr(data-ng-repeat='trn in tournaments | filter:{name: query} | orderBy:predicate:reverse')
+                        td
+                            a(href='#/tournaments/{{trn._id.$oid}}') {{trn.name}}
+                        td {{trn.description}}
+                        td {{trn.location}}
+                        td {{trn.sport}}
+                        td
+                            a(href='#/tournaments/edit/{{trn._id.$oid}}')
+                                i.icon-pencil

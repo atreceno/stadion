@@ -1,0 +1,89 @@
+header.jumbotron.subhead
+    .container
+        h1 {{tournament.name}}
+            small &nbsp;{{tournament.sport}}
+        p {{tournament.location}}
+.container
+    br
+    .row
+        .span8
+            .tabbable
+                ul.nav.nav-tabs
+                    li.active
+                        a(href='#schedule', data-toggle='tab') Schedule
+                    li
+                        a(href='#competitors', data-toggle='tab') Competitors
+                    li.dropdown
+                        a.dropdown-toggle(href='#', data-toggle='dropdown') Ranking
+                            b.caret
+                        ul.dropdown-menu
+                            li
+                                a(href='#preliminary', data-toggle='tab') Preliminary Round
+                            li
+                                a(href='#semifinal', data-toggle='tab') Semifinal
+                            li
+                                a(href='#final', data-toggle='tab') Final
+                .tab-content
+                    #schedule.tab-pane.fade.in.active
+                        p The schedule has not been confirmed yet.
+                        #schedule-list.accordion
+                            .accordion-group
+                                .accordion-heading
+                                    a.accordion-toggle(data-toggle='collapse', data-parent='#schedule-list', href='#item1') Item1
+                                #item1.accordion-body.collapse.in
+                                    .accordion-inner This is the inner
+                            .accordion-group
+                                .accordion-heading
+                                    a.accordion-toggle(data-toggle='collapse', data-parent='#schedule-list', href='#item2') Item2
+                                #item2.accordion-body.collapse.in
+                                    .accordion-inner This is the inner
+                        ul
+                            li(ng-repeat='sch in tournament.schedule') {{sch.date}} - {{sch.name}}
+                    #competitors.tab-pane.fade
+                        p List of registered competitors:
+                        label
+                            input.span4(type='text', data-ng-model='query', placeholder='Search competitor')
+                        table.table.table-striped
+                            thead
+                                tr
+                                    th
+                                        a(data-ng-click='predicate=\'name\';reverse=!reverse') Name
+                                    th
+                                        a(data-ng-click='predicate=\'description\';reverse=!reverse') Description
+                                    th
+                                        a(data-ng-click='predicate=\'location\';reverse=!reverse') Location
+                                    th
+                                        a(data-ng-click='predicate=\'sport\';reverse=!reverse') Sport
+                                    th
+                                        a(href='#/tournaments/new')
+                                            i.icon-plus-sign
+                            tbody
+                                tr(data-ng-repeat='cmp in tournament.competitors | filter:{name: query} | orderBy:predicate:reverse')
+                                    td {{cmp.name}}
+                                    td {{cmp.age}}
+                                    td {{cmp.name}}
+                                    td {{cmp.name}}
+                                    td
+                                        a(href='#/tournaments/edit/{{cmp._id.$oid}}')
+                                            i.icon-pencil
+                        
+                        
+                    #preliminary.tab-pane.fade
+                        p This is the preliminary round. Ranking: ...
+                    #semifinal.tab-pane.fade
+                        p This is the semifinal round. Ranking: ...
+                    #final.tab-pane.fade
+                        p This is the final round. Ranking: ...
+        .span4
+            .alert.alert-info
+                h4 Competition Information
+                dl.dl-horizontal
+                    dt
+                        i.icon-map-marker
+                    dd {{tournament.location}}
+                    dt
+                        i.icon-calendar
+                    dd {{tournament.startDate}}
+                    dt
+                        i.icon-align-left
+                    dd {{tournament.description}}

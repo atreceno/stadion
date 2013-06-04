@@ -63,7 +63,7 @@ angular.module('stadion').directive('stMedal', function () {
                     .attr("y", 6)
                     .attr("dy", ".71em")
                     .style("text-anchor", "end")
-                    .text("Medals");
+                    .text("Gold Medals");
 
                 svg.selectAll(".bar")
                     .data(data)

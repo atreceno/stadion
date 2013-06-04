@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('stadion', ['mongoLabApi'])
+angular.module('stadion', ['mongoLabApi','ui.bootstrap'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
@@ -20,8 +20,12 @@ angular.module('stadion', ['mongoLabApi'])
                 controller: 'CountryNewCtrl'
             })
             .when('/tournaments', {
-                templateUrl: 'views/partials/tournament-list.html',
+                templateUrl: 'partials/tournament-list.html',
                 controller: 'TournamentListCtrl'
+            })
+            .when('/tournaments/:tournamentId', {
+                templateUrl: 'partials/tournament-view.html',
+                controller: 'TournamentViewCtrl'
             })
             .otherwise({
                 redirectTo: '/'
