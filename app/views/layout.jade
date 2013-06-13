@@ -52,8 +52,9 @@ html(lang='en')
                                         li
                                             a(href='#countries') Medal Standing
                                             a One more link
-                            form.navbar-search(action='labs.html#tournaments')
-                                input.search-query.span3(type='text', placeholder='Search tournaments')
+                                //-form.navbar-search(data-ng-submit='search()', data-ng-controller='TournamentListCtrl')
+                            form.navbar-search(action='#tournaments/search/{{tournamentName}}')
+                                input.span3.search-query(type='text', data-ng-model='tournamentName', placeholder='Search tournaments')
 
                     //-
                                 form.navbar-search(action='#')

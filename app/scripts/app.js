@@ -19,11 +19,11 @@ angular.module('stadion', ['mongoLabApi','ui.bootstrap'])
                 templateUrl: 'partials/country-detail.html',
                 controller: 'CountryNewCtrl'
             })
-            .when('/tournaments', {
+            .when('/tournaments/search/:tournamentName', {
                 templateUrl: 'partials/tournament-list.html',
                 controller: 'TournamentListCtrl'
             })
-            .when('/tournaments/:tournamentId', {
+            .when('/tournaments/view/:tournamentId', {
                 templateUrl: 'partials/tournament-view.html',
                 controller: 'TournamentViewCtrl'
             })

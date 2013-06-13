@@ -30,15 +30,25 @@ mongoLabApi.factory('Country', function ($resource) {
 
 });
 
-mongoLabApi.factory('Tournament', function ($resource) {
+mongoLabApi.factory('Tournament', function ($resource, $http) {
 
-    var Tournament = $resource('https://api.mongolab.com/api/1/databases/stadion/collections/tournaments/:id', {
+    var url = 'https://api.mongolab.com/api/1/databases/stadion/collections/tournaments/:id';
+    var Tournament = $resource(url, {
         'apiKey': 'yjCay7qWRojHdBsbhp10CJegJRnzbkTJ'
     }, {
         update: {
             method: 'PUT'
         }
     });
+
+    Tournament.count = function (params) {
+        var config = new Object();
+        config['method'] = 'GET';
+        config['url'] = 'https://api.mongolab.com/api/1/databases/stadion/collections/tournaments';
+        params['apiKey'] = 'yjCay7qWRojHdBsbhp10CJegJRnzbkTJ';
+        config['params'] = params;
+        return $http(config);
+    };
 
     Tournament.prototype.update = function (cb) {
         return Tournament.update({

@@ -49,20 +49,17 @@ header.jumbotron.subhead
                                     th
                                         a(data-ng-click='predicate=\'name\';reverse=!reverse') Name
                                     th
-                                        a(data-ng-click='predicate=\'description\';reverse=!reverse') Description
+                                        a(data-ng-click='predicate=\'gender\';reverse=!reverse') Gender
                                     th
-                                        a(data-ng-click='predicate=\'location\';reverse=!reverse') Location
-                                    th
-                                        a(data-ng-click='predicate=\'sport\';reverse=!reverse') Sport
+                                        a(data-ng-click='predicate=\'country\';reverse=!reverse') Country
                                     th
                                         a(href='#/tournaments/new')
                                             i.icon-plus-sign
                             tbody
-                                tr(data-ng-repeat='cmp in tournament.competitors | filter:{name: query} | orderBy:predicate:reverse')
-                                    td {{cmp.name}}
-                                    td {{cmp.age}}
-                                    td {{cmp.name}}
-                                    td {{cmp.name}}
+                                tr(data-ng-repeat='cmp in tournament.competitors | filter:query | orderBy:predicate:reverse')
+                                    td {{cmp.firstName}} {{cmp.lastName}}
+                                    td {{cmp.gender}}
+                                    td {{cmp.country}}
                                     td
                                         a(href='#/tournaments/edit/{{cmp._id.$oid}}')
                                             i.icon-pencil
@@ -83,7 +80,7 @@ header.jumbotron.subhead
                     dd {{tournament.location}}
                     dt
                         i.icon-calendar
-                    dd {{tournament.startDate}}
+                    dd {{tournament.startDate | date:'mediumDate'}}
                     dt
                         i.icon-align-left
                     dd {{tournament.description}}

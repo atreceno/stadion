@@ -1,29 +1,66 @@
 .container
     .row
-        .span12
-            label
-                input.span4(type='text', data-ng-model='query', placeholder='Search tournament')
-            table.table.table-striped
-                thead
-                    tr
-                        th
-                            a(data-ng-click='predicate=\'name\';reverse=!reverse') Name
-                        th
-                            a(data-ng-click='predicate=\'description\';reverse=!reverse') Description
-                        th
-                            a(data-ng-click='predicate=\'location\';reverse=!reverse') Location
-                        th
-                            a(data-ng-click='predicate=\'sport\';reverse=!reverse') Sport
-                        th
-                            a(href='#/tournaments/new')
-                                i.icon-plus-sign
-                tbody
-                    tr(data-ng-repeat='trn in tournaments | filter:{name: query} | orderBy:predicate:reverse')
-                        td
-                            a(href='#/tournaments/{{trn._id.$oid}}') {{trn.name}}
-                        td {{trn.description}}
-                        td {{trn.location}}
-                        td {{trn.sport}}
-                        td
-                            a(href='#/tournaments/edit/{{trn._id.$oid}}')
-                                i.icon-pencil
+        .span2
+            form(action='#/tournaments/search/{{searchName}}?sport={{selected}}&location={{selectedLocation}}')
+                input.span2(type='text', data-ng-model='selected', typeahead='sport for sport in sports | filter:$viewValue', placeholder='Filter by sport', autocomplete='off')
+                input.span2(type='text', data-ng-model='selectedLocation', placeholder='Filter by location')
+                button.btn(type='submit') Search
+            p Tournament Name: {{searchName}}
+            p Sport: {{selected | json}}
+            p Location: {{selectedLocation}}
+            p
+                a(href='#/tournaments/search/100m') Look for 100m
+            p
+                a(href='#/tournaments/search/50m?sport=swimming') Look for 50m & SW
+            ul.nav.nav-pills.nav-stacked
+                li.active
+                    a(href="#") Active
+                li
+                    a(href="#") Completed
+        .span10
+            ul.nav.nav-tabs
+                li.active
+                    a(href='#browse', data-toggle='tab') Browse
+                li
+                    a(href='#map', data-toggle='tab') Map
+            .tab-content
+                #browse.tab-pane.fade.in.active
+                    ul.inline
+                        li
+                            .btn-group
+                                button.btn.btn-small
+                                    span.muted Sort by:&nbsp;
+                                    span {{sortBy}}
+                                button.btn.btn-small.dropdown-toggle(data-toggle='dropdown')
+                                    span.caret
+                                ul.dropdown-menu
+                                    li(data-ng-repeat='predicate in predicates')
+                                        a(data-ng-click='search(predicate, pageSize)') {{predicate}}
+                        li
+                             .btn-group
+                                button.btn.btn-small
+                                    span.muted Items per page:&nbsp;
+                                    span {{pageSize}}
+                                button.btn.btn-small.dropdown-toggle(data-toggle='dropdown')
+                                    span.caret
+                                ul.dropdown-menu
+                                    li(data-ng-repeat='itemPerPage in itemsPerPage')
+                                        a(data-ng-click='search(sortBy, itemPerPage)') {{itemPerPage}}
+                    .row
+                        .span10
+                            ul.list-group
+                                li.list-group-item(data-ng-repeat='trn in tournaments')
+                                    h5
+                                        a(href='#/tournaments/{{trn._id.$oid}}') {{trn.name}}
+                                        small &nbsp;-&nbsp;{{trn.sport}}
+                                    ul
+                                        li
+                                            i.icon-map-marker
+                                            span &nbsp;{{trn.location}}
+                                        li
+                                            i.icon-align-left
+                                            span &nbsp;{{trn.description}}
+
+                            pagination.pagination-right.pagination-small(boundary-links='true', num-pages='noOfPages', current-page='currentPage', max-size='maxSize')
+                #map.tab-pane.fade
+                    p This functionality has not been implemented yet.
