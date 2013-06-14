@@ -2,25 +2,21 @@
 
 var stadion = angular.module('stadion');
 
-stadion.controller('TournamentListCtrl', function ($scope, $routeParams, $location, Tournament) {
+stadion.controller('TournamentListCtrl', function ($scope, $routeParams, $location, Tournament, Sport) {
 
     $scope.tName = $routeParams.tournamentName;
     $scope.tSport = $routeParams.sport;
     $scope.tLocation = $routeParams.location;
     $scope.predicates = ['name', 'location', 'sport'];
     $scope.itemsPerPage = [25, 50, 100];
-    $scope.sports = ['Archery', 'Cycling BMX', 'Boxing'];
+    $scope.sports = Sport.query({f:JSON.stringify({_id:0,name:1})});
+    $scope.locations = ['London, UK'];
 
     // Default values
     $scope.currentPage = 1;
     $scope.maxSize = 5;
     $scope.sortBy = 'name';
     $scope.pageSize = 25;
-
-    $scope.go = function () {
-        alert('hola');
-        $location.path('/tournaments/search/');
-    };
 
     var getQueryParams = function (name, sport, loc, count, predicate, currentPage, itemPerPage) {
         var res = new Object();

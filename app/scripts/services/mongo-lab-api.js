@@ -29,7 +29,6 @@ mongoLabApi.factory('Country', function ($resource) {
     return Country;
 
 });
-
 mongoLabApi.factory('Tournament', function ($resource, $http) {
 
     var url = 'https://api.mongolab.com/api/1/databases/stadion/collections/tournaments/:id';
@@ -67,3 +66,17 @@ mongoLabApi.factory('Tournament', function ($resource, $http) {
     return Tournament;
 
 });
+mongoLabApi.factory('Sport', function ($resource) {
+
+
+    var Sport = $resource('https://api.mongolab.com/api/1/databases/stadion/collections/sports/:id', {
+        'apiKey': 'yjCay7qWRojHdBsbhp10CJegJRnzbkTJ'
+    }, {
+        update: {
+            method: 'PUT'
+        }
+    });
+    return Sport;
+
+});
+
