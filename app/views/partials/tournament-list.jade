@@ -1,22 +1,16 @@
 .container
     .row
         .span2
-            form(action='#/tournaments/search/{{searchName}}?sport={{selected}}&location={{selectedLocation}}')
-                input.span2(type='text', data-ng-model='selected', typeahead='sport for sport in sports | filter:$viewValue', placeholder='Filter by sport', autocomplete='off')
-                input.span2(type='text', data-ng-model='selectedLocation', placeholder='Filter by location')
-                button.btn(type='submit') Search
-            p Tournament Name: {{searchName}}
-            p Sport: {{selected | json}}
-            p Location: {{selectedLocation}}
-            p
-                a(href='#/tournaments/search/100m') Look for 100m
-            p
-                a(href='#/tournaments/search/50m?sport=swimming') Look for 50m & SW
-            ul.nav.nav-pills.nav-stacked
-                li.active
-                    a(href="#") Active
-                li
-                    a(href="#") Completed
+            input.span2(type='text', data-ng-model='tName', placeholder='Filter by name')
+            input.span2(type='text', data-ng-model='tSport', typeahead='sport for sport in sports | filter:$viewValue', placeholder='Filter by sport', autocomplete='off')
+            input.span2(type='text', data-ng-model='tLocation', placeholder='Filter by location')
+            a.btn.btn-primary(href='#/tournaments/search/{{tName}}?sport={{tSport}}&location={{tLocation}}') Search
+            //- 
+                ul.nav.nav-pills.nav-stacked
+                    li.active
+                        a(href="#") Active
+                    li
+                        a(href="#") Completed
         .span10
             ul.nav.nav-tabs
                 li.active
