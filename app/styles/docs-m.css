@@ -39,10 +39,11 @@ html, body {
     height: 190px;
 }
 
+/*
 .modal {
     width: 300px;
     margin-left: -150px;
-}
+}*/
 
 /* List group here */
 .list-group {
@@ -546,6 +547,7 @@ section > ul li {
         padding-top: 0;
     }
 
+/*
     .modal {
         position: fixed;
         top: 20px;
@@ -553,7 +555,7 @@ section > ul li {
         right: 20px;
         width: auto;
         margin: 0;
-    }
+    }*/
 
     /* Widen masthead and social buttons to fill body padding */
     .jumbotron {

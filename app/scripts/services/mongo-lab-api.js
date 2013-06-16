@@ -79,4 +79,24 @@ mongoLabApi.factory('Sport', function ($resource) {
     return Sport;
 
 });
+mongoLabApi.factory('Feedback', function ($resource) {
 
+    var Feedback = $resource('https://api.mongolab.com/api/1/databases/stadion/collections/feedbacks/:id', {
+        'apiKey': 'yjCay7qWRojHdBsbhp10CJegJRnzbkTJ'
+    }, {
+        update: {
+            method: 'PUT'
+        }
+    });
+
+    Feedback.prototype.update = function (cb) {
+        return Feedback.update({
+            id: this._id.$oid
+        }, angular.extend({}, this, {
+            _id: undefined
+        }), cb);
+    };
+
+    return Feedback;
+
+});

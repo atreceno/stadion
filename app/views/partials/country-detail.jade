@@ -1,27 +1,27 @@
-.row
-    .span12
-        p Some interesting values for development: Predicate: {{predicate}} and Reverse: {{reverse}}
-        form(name='countryForm')
-            .control-group(data-ng-class='{error: countryForm.name.$invalid}')
-                label Name
-                    input(type='text', name='name', data-ng-model='country.name', required)
-                span.help-inline(data-ng-show='countryForm.name.$error.required') Required
-            .control-group(data-ng-class='{error: countryForm.gold.$invalid}')
-                label Gold
-                    input(type='text', name='gold', data-ng-model='country.gold', required)
-                span.help-inline(data-ng-show='countryForm.gold.$error.required') Required
-                span.help-inline(data-ng-show='countryForm.gold.$error.number') Not a number
-            .control-group(data-ng-class='{error: countryForm.silver.$invalid}')
-                label Silver
-                    input(type='text', name='silver', data-ng-model='country.silver', required)
-                span.help-inline(data-ng-show='countryForm.silver.$error.required') Required
-                span.help-inline(data-ng-show='countryForm.silver.$error.number') Not a number
-            .control-group(data-ng-class='{error: countryForm.silver.$invalid}')
-                label Bronze
-                    input(type='text', name='bronze', data-ng-model='country.bronze', required)
-                span.help-inline(data-ng-show='countryForm.bronze.$error.required') Required
-                span.help-inline(data-ng-show='countryForm.bronze.$error.number') Not a number
-            br
-            a.btn(href='#/countries') Cancel
-            button.btn.btn-primary(data-ng-click='save()', data-ng-disabled='isClean() || countryForm.$invalid') Save
-            button.btn.btn-danger(data-ng-click='destroy()', data-ng-show='country._id') Delete
+.container
+    .row
+        .span12
+            form(name='countryForm')
+                .control-group(data-ng-class='{error: countryForm.name.$invalid}')
+                    label Name
+                        input(type='text', name='name', data-ng-model='country.name', required)
+                    span.help-inline(data-ng-show='countryForm.name.$error.required') Required
+                .control-group(data-ng-class='{error: countryForm.gold.$invalid}')
+                    label Gold
+                        input(type='text', name='gold', data-ng-model='country.gold', required)
+                    span.help-inline(data-ng-show='countryForm.gold.$error.required') Required
+                    span.help-inline(data-ng-show='countryForm.gold.$error.number') Not a number
+                .control-group(data-ng-class='{error: countryForm.silver.$invalid}')
+                    label Silver
+                        input(type='text', name='silver', data-ng-model='country.silver', required)
+                    span.help-inline(data-ng-show='countryForm.silver.$error.required') Required
+                    span.help-inline(data-ng-show='countryForm.silver.$error.number') Not a number
+                .control-group(data-ng-class='{error: countryForm.bronce.$invalid}')
+                    label Bronze
+                        input(type='text', name='bronze', data-ng-model='country.bronze', required)
+                    span.help-inline(data-ng-show='countryForm.bronze.$error.required') Required
+                    span.help-inline(data-ng-show='countryForm.bronze.$error.number') Not a number
+                br
+                a.btn(href='#/countries') Cancel
+                button.btn.btn-primary(data-ng-click='save()', data-ng-disabled='isClean() || countryForm.$invalid') Save
+                button.btn.btn-danger(data-ng-click='destroy()', data-ng-show='country._id') Delete

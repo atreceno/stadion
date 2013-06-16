@@ -45,7 +45,7 @@
                             ul.list-group
                                 li.list-group-item(data-ng-repeat='trn in tournaments')
                                     h5
-                                        a(href='#/tournaments/{{trn._id.$oid}}') {{trn.name}}
+                                        a(href='#/tournaments/view/{{trn._id.$oid}}') {{trn.name}}
                                         small &nbsp;-&nbsp;{{trn.sport}}
                                     ul
                                         li
