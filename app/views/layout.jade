@@ -12,17 +12,7 @@ html(lang='en')
             script(src='components/bootstrap/docs/assets/js/html5shiv.js')
     body(data-ng-app='stadion')
         #wrap
-            #loginModal.modal.hide.fade(tabindex='-1')
-                .modal-header
-                    button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-                    h3 Please sign in
-                .modal-body
-                    form.modal-form
-                        input.input-block-level(type='text', placeholder='Email address')
-                        input.input-block-level(type='password', placeholder='Password')
-                        label.checkbox
-                            input(type='checkbox', value='Remember me') Remember me
-                        button.btn.btn-primary(type='submit') Sign in
+            include includes/modals
             .navbar.navbar-inverse.navbar-fixed-top
                 .navbar-inner
                     .container-fluid
@@ -30,40 +20,19 @@ html(lang='en')
                             span.icon-bar
                             span.icon-bar
                             span.icon-bar
-                        a.brand(href='./') Stadion
+                        a.brand(href='/') Stadion
                         .nav-collapse.collapse(data-ng-controller='MainCtrl')
                             ul.nav
                                 li.active
-                                    a(href='./') Home
+                                    a(href='#/') Home
                                 li
-                                    a(href='#loginModal', data-toggle='modal') Login
-                                li
-                                    a(href='', ng-click='open()') Contact
-                                    #feedback(modal='shouldBeOpen', close='close()', options='opts', tabindex='0')
-                                        form.modal-form(name='contactForm', data-ng-submit='send()')
-                                            .modal-header
-                                                button.close(type='button', data-ng-click='close()', aria-hidden='true') &times;
-                                                h3 Contact form
-                                            .modal-body
-                                                .control-group(data-ng-class='{error: contactForm.name.$invalid}')
-                                                    input.input-block-level(type='text', name='name', placeholder='Your name', required='true', data-ng-model='feedback.name')
-                                                    span.help-inline(data-ng-show='contactForm.name.$error.required') Required
-                                                .control-group(data-ng-class='{error: contactForm.email.$invalid}')
-                                                    input.input-block-level(type='email', name='email', placeholder='Your email', required='true', data-ng-model='feedback.email')
-                                                    span.help-inline(data-ng-show='contactForm.email.$error.required') Required
-                                                .control-group(data-ng-class='{error: contactForm.message.$invalid}')
-                                                    textarea.input-block-level(rows='4', name='message', placeholder='Message', required='true', data-ng-model='feedback.message')
-                                                    span.help-inline(data-ng-show='contactForm.message.$error.required') Required
-                                                    br
-                                            .modal-footer
-                                                    button.btn(data-ng-click='close()') Close
-                                                    button.btn.btn-primary(type='submit') Send
+                                    a(href='#contact', data-toggle='modal') Contact
                                 li.dropdown
                                     a.dropdown-toggle(href='#', data-toggle='dropdown') Tournaments
                                         b.caret
                                     ul.dropdown-menu
                                         li
-                                            a(href='#tournaments') Search tournaments
+                                            a(href='#tournaments/search/') Search tournaments
                                         li
                                             a Create tournaments
                                         li.divider

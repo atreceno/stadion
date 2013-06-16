@@ -4,7 +4,8 @@
             input.span2(type='text', data-ng-model='tName', placeholder='Filter by name')
             input.span2(type='text', data-ng-model='tSport', typeahead='sport.name for sport in sports | filter:$viewValue', placeholder='Filter by sport', autocomplete='off')
             input.span2(type='text', data-ng-model='tLocation', typeahead='loc for loc in locations | filter:$viewValue', placeholder='Filter by location', autocomplete='off')
-            a.btn.btn-primary(href='#/tournaments/search/{{tName}}?sport={{tSport}}&location={{tLocation}}') Search
+            a.btn.btn-primary.btn-block(href='#/tournaments/search/{{tName}}?sport={{tSport}}&location={{tLocation}}') Search
+            br
             //- 
                 ul.nav.nav-pills.nav-stacked
                     li.active

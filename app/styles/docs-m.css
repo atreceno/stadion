@@ -31,7 +31,7 @@ html, body {
 }
 
 #wrap > .data-ng-view > .container {
-    padding-top: 60px;
+    padding-top: 70px;
 }
 
 /* Set the fixed height of the footer here */
@@ -537,6 +537,10 @@ section > ul li {
     .bs-docs-sidenav.affix {
         top: 0;
     }
+
+    #wrap > .data-ng-view > .container {
+        padding-top: 0;
+    }
 }
 
 /* Tablet
@@ -610,6 +614,11 @@ section > ul li {
     .footer p {
         margin-bottom: 9px;
     }
+
+    #wrap > .data-ng-view > .container {
+        padding-top: 0;
+    }
+
 }
 
 /* Landscape phones
