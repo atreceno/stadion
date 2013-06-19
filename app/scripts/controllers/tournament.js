@@ -19,29 +19,29 @@ stadion.controller('TournamentListCtrl', function ($scope, $routeParams, $locati
     $scope.pageSize = 25;
 
     var getQueryParams = function (name, sport, loc, count, predicate, currentPage, itemPerPage) {
-        var res = new Object();
+        var res = {};
         if (name || sport || loc) {
-            var q = new Object();
+            var q = {};
             if (name) {
-                q['name'] = {$regex: name, $options: 'i'};
+                q.name = {$regex: name, $options: 'i'};
             }
             if (sport) {
-                q['sport'] = sport;
+                q.sport = sport;
             }
             if (loc) {
-                q['location'] = loc;
+                q.location = loc;
             }
-            res['q'] = JSON.stringify(q);
+            res.q = JSON.stringify(q);
         }
         if (count) {
-            res['c'] = true;
+            res.c = true;
         } else {
-            res['f'] = JSON.stringify({name: 1, description: 1, location: 1, sport: 1});
-            var s = new Object();
+            res.f = JSON.stringify({name: 1, description: 1, location: 1, sport: 1});
+            var s = {};
             s[predicate] = 1;
-            res['s'] = JSON.stringify(s);
-            res['sk'] = itemPerPage * (currentPage - 1);
-            res['l'] = itemPerPage;
+            res.s = JSON.stringify(s);
+            res.sk = itemPerPage * (currentPage - 1);
+            res.l = itemPerPage;
         }
         return res;
     };
@@ -55,7 +55,7 @@ stadion.controller('TournamentListCtrl', function ($scope, $routeParams, $locati
         var params = getQueryParams($scope.tName, $scope.tSport, $scope.tLocation, false, predicate, $scope.currentPage, itemPerPage);
         $scope.tournaments = Tournament.query(params);
     };
-    
+
     $scope.$watch('currentPage', function () {
         $scope.search($scope.sortBy, $scope.pageSize);
     });

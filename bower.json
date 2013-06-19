@@ -2,7 +2,8 @@
   "name": "stadion",
   "version": "0.0.1",
   "dependencies": {
-    "angular": "git://github.com/angular/bower-angular.git#~1.0.6",
+    "angular": "~1.0.5",
+    "jquery": "~2.0.2",
     "json3": "~3.2.4",
     "es5-shim": "~2.0.8",
     "angular-resource": "~1.0.5",

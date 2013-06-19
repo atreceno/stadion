@@ -10,7 +10,7 @@ stadion.controller('MainCtrl', function ($scope, $dialog, Feedback) {
         $scope.shouldBeOpen = false;
     };
     $scope.opts = {
-        backdrop: true, 
+        backdrop: true,
         keyboard: true,
         backdropClick: true,
         dialogFade: true,
@@ -19,7 +19,7 @@ stadion.controller('MainCtrl', function ($scope, $dialog, Feedback) {
         controller: 'DialogCtrl'
     };
     $scope.opts2 = {
-        backdropFade: true, 
+        backdropFade: true,
         dialogFade: true
     };
     $scope.send = function () {
@@ -30,11 +30,12 @@ stadion.controller('MainCtrl', function ($scope, $dialog, Feedback) {
     };
     $scope.openFb = function () {
         $dialog.dialog($scope.opts).open().then(function(name) {
-            alert(name);
+            console.log(name);
         });
     };
+    $scope.widgets = ['one', 'two', 'three'];
 });
-stadion.controller('DialogCtrl', function ($scope, dialog) {
+stadion.controller('DialogCtrl', function ($scope, dialog, Feedback) {
     $scope.closeFb = function (name) {
         dialog.close(name);
     };

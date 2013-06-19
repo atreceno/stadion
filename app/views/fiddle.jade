@@ -1,0 +1,24 @@
+doctype 5
+html
+    head
+        title Backdoor to run some tests
+        meta(charset='utf8')
+        style(type='text/css')
+            body {
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+            div.sec {
+                background-color: #ccc;
+            }
+    body(data-ng-app='fiddle')
+        .sec(data-ng-controller='someCtrl', data-ng-show='false')
+            p countCallback: {{countCallback}}
+            p countReturn: {{countReturn}}
+            p countReturn2: {{countReturn2}}
+            p countPromise: {{countPromise}}
+            p countThen: {{countThen}}
+        .sec(data-ng-controller='someCtrl')
+            p {{message}}
+        script(src='components/angular/angular.js')
+        script(src='scripts/fiddle.js')

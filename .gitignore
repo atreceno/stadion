@@ -15,3 +15,5 @@ npm-debug.log
 *.swp
 # DB credentials
 config/credentials.js
+# Random tests
+/.litter

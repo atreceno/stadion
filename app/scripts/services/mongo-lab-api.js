@@ -41,11 +41,11 @@ mongoLabApi.factory('Tournament', function ($resource, $http) {
     });
 
     Tournament.count = function (params) {
-        var config = new Object();
-        config['method'] = 'GET';
-        config['url'] = 'https://api.mongolab.com/api/1/databases/stadion/collections/tournaments';
-        params['apiKey'] = 'yjCay7qWRojHdBsbhp10CJegJRnzbkTJ';
-        config['params'] = params;
+        var config = {};
+        config.method = 'GET';
+        config.url = 'https://api.mongolab.com/api/1/databases/stadion/collections/tournaments';
+        params.apiKey = 'yjCay7qWRojHdBsbhp10CJegJRnzbkTJ';
+        config.params = params;
         return $http(config);
     };
 

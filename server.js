@@ -61,17 +61,17 @@ if ('production' == app.get('env')) {
     app.locals.pretty = 'false';
 }
 
-/* TEST!!
+/* TEST!! 
 app.get('/*', function(req, res, next) {
   res.setHeader('Last-Modified', (new Date()).toUTCString());
   next();
 }); */
 
 // Map partial views for Angular.js
-app.get('/partials/:name', routes.partials);
+//app.get('/partials/:name', routes.partials);
 
 // Offer REST API
-app.get('/', routes.index);
+//app.get('/', routes.index);
 app.get('/api/countries', country.findAll);
 app.get('/api/countries/:id', country.findOne);
 app.post('/api/countries', country.addNew);

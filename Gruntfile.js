@@ -94,18 +94,7 @@ module.exports = function (grunt) {
             }
         },
         clean: {
-            dist: {
-                files: [
-                    {
-                        dot: true,
-                        src: [
-                            '.tmp',
-                            '<%= yeoman.dist %>/*',
-                            '!<%= yeoman.dist %>/.git*'
-                        ]
-                    }
-                ]
-            },
+            dist: ['<%= yeoman.dist %>'],
             server: '.tmp'
         },
         jshint: {
@@ -114,7 +103,7 @@ module.exports = function (grunt) {
             },
             all: [
                 'Gruntfile.js',
-                '<%= yeoman.app %>/scripts/{,*/}*.js'
+                '<%= yeoman.app %>/scripts/**/*.js'
             ]
         },
         karma: {
@@ -168,21 +157,21 @@ module.exports = function (grunt) {
             server: {
                 options: {
                     paths: ['<%= yeoman.app %>/styles/less', '<%= yeoman.app %>/components/bootstrap/less'],
-                    yuicompress: false
-                },
-                files: {
-                    '.tmp/styles/main.css': ['<%= yeoman.app %>/styles/less/bootstrap.less', '<%= yeoman.app %>/styles/less/responsive.less']
-                }
-            },
-            dist: {
-                options: {
-                    paths: ['<%= yeoman.app %>/styles/less', '<%= yeoman.app %>/components/bootstrap/less'],
                     yuicompress: true
                 },
                 files: {
-                    '<%= yeoman.dist %>/styles/main.css': ['<%= yeoman.app %>/styles/less/bootstrap.less', '<%= yeoman.app %>/styles/less/responsive.less']
+                    '.tmp/styles/mint.css': ['<%= yeoman.app %>/styles/less/bootstrap.less', '<%= yeoman.app %>/styles/less/responsive.less']
                 }
             }
+//            dist: {
+//                options: {
+//                    paths: ['<%= yeoman.app %>/styles/less', '<%= yeoman.app %>/components/bootstrap/less'],
+//                    yuicompress: true
+//                },
+//                files: {
+//                    '.tmp/styles/mint-min.css': ['<%= yeoman.app %>/styles/less/bootstrap.less', '<%= yeoman.app %>/styles/less/responsive.less']
+//                }
+//            }
         },
         jade: {
             server: {
@@ -194,49 +183,52 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'app/views',
-                        src: ['**/*.jade'],
+                        src: ['*.jade', 'partials/*.jade'],
                         dest: '.tmp',
                         ext: '.html'
                     }
                 ]
-            },
-            dist: {
-                options: {
-                    data: { debug: false, title: '<%= npm.name %>' },
-                    pretty: true
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'app/views',
-                        src: ['**/*.jade'],
-                        dest: 'dist',
-                        ext: '.html'
-                    }
-                ]
             }
+//            dist: {
+//                options: {
+//                    data: { debug: false, title: '<%= npm.name %>' },
+//                    pretty: false
+//                },
+//                files: [
+//                    {
+//                        expand: true,
+//                        cwd: 'app/views',
+//                        src: ['*.jade', 'partials/*.jade'],
+//                        dest: 'dist',
+//                        ext: '.html'
+//                    }
+//                ]
+//            }
         },
         concat: {
             dist: {
-                files: {
-                    '<%= yeoman.dist %>/scripts/scripts.js': [
-                        '.tmp/scripts/{,*/}*.js',
-                        '<%= yeoman.app %>/scripts/{,*/}*.js'
-                    ]
-                }
+//                files: {
+//                    '<%= yeoman.dist %>/scripts/scripts.js': [
+//                        '.tmp/scripts/{,*/}*.js',
+//                        '<%= yeoman.app %>/scripts/{,*/}*.js'
+//                    ]
+//                }
             }
         },
         useminPrepare: {
-            html: '<%= yeoman.app %>/index.html',
+            html: '.tmp/index.html',
+            //html: '<%= yeoman.app %>/views/layouts/main.jade',
             options: {
                 dest: '<%= yeoman.dist %>'
             }
         },
         usemin: {
-            html: ['<%= yeoman.dist %>/{,*/}*.html'],
+            //html: ['<%= yeoman.dist %>/{,*/}*.html'],
+            html: ['.tmp/{,*/}*.html'],
             css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
             options: {
-                dirs: ['<%= yeoman.dist %>']
+                dirs: ['<%= yeoman.dist %>'],
+                basedir: '<%= yeoman.dist %>'
             }
         },
         imagemin: {
@@ -253,32 +245,33 @@ module.exports = function (grunt) {
         },
         cssmin: {
             dist: {
+                options: {
+                    banner: '/* Minified vanilla CSS */',
+                    report: 'min'
+                },
                 files: {
-                    '<%= yeoman.dist %>/styles/main.css': [
-                        '.tmp/styles/{,*/}*.css',
-                        '<%= yeoman.app %>/styles/{,*/}*.css'
-                    ]
+                    '.tmp/styles/vanilla.css': ['<%= yeoman.app %>/styles/vanilla.css']
                 }
             }
         },
         htmlmin: {
             dist: {
-                options: {
-                    /*removeCommentsFromCDATA: true,
-                     // https://github.com/yeoman/grunt-usemin/issues/44
-                     //collapseWhitespace: true,
-                     collapseBooleanAttributes: true,
-                     removeAttributeQuotes: true,
-                     removeRedundantAttributes: true,
-                     useShortDoctype: true,
-                     removeEmptyAttributes: true,
-                     removeOptionalTags: true*/
+                options: { // https://github.com/yeoman/grunt-usemin/issues/44
+                    removeComments: false,
+                    removeCommentsFromCDATA: false,
+                    collapseWhitespace: true,
+                    collapseBooleanAttributes: false,
+                    removeAttributeQuotes: false,
+                    removeRedundantAttributes: false,
+                    useShortDoctype: false,
+                    removeEmptyAttributes: false,
+                    removeOptionalTags: false
                 },
                 files: [
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>',
-                        src: ['*.html', 'views/*.html'],
+                        cwd: '.tmp',
+                        src: ['*.html', 'partials/*.html'],
                         dest: '<%= yeoman.dist %>'
                     }
                 ]
@@ -286,7 +279,7 @@ module.exports = function (grunt) {
         },
         cdnify: {
             dist: {
-                html: ['<%= yeoman.dist %>/*.html']
+                html: ['.tmp/*.html']
             }
         },
         ngmin: {
@@ -303,9 +296,12 @@ module.exports = function (grunt) {
         },
         uglify: {
             dist: {
+                options: {
+                    mangle: true
+                },
                 files: {
-                    '<%= yeoman.dist %>/scripts/scripts.js': [
-                        '<%= yeoman.dist %>/scripts/scripts.js'
+                    '<%= yeoman.dist %>/scripts/st-min.js': [
+                        '<%= yeoman.dist %>/scripts/st-min.js'
                     ]
                 }
             }
@@ -333,9 +329,9 @@ module.exports = function (grunt) {
                         src: [
                             '*.{ico,txt}',
                             '.htaccess',
-                            'components/**/*',
-                            'images/{,*/}*.{gif,webp}',
-                            'styles/fonts/*'
+//                            'components/**/*',
+//                            'images/{,*/}*.{gif,webp}',
+//                            'styles/fonts/*'
                         ]
                     }
                 ]
@@ -349,7 +345,7 @@ module.exports = function (grunt) {
         'clean:server',
         'coffee:dist',
         'compass:server',
-        'less:server',
+        'less',
         'jade:server',
         'livereload-start',
         'connect:livereload',
@@ -366,24 +362,24 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('build', [
-        'clean:dist',
+        'clean',
         'jshint',
         'test',
-        'coffee',
-        'compass:dist',
-        'less:dist',
-        'jade:dist',
+        //'coffee',
+        //'compass:dist',
+        'less',
+        'jade',
         'useminPrepare',
         'imagemin',
         'cssmin',
-        'htmlmin',
         'concat',
         'copy',
         'cdnify',
         'ngmin',
         'uglify',
         'rev',
-        'usemin'
+        'usemin',
+        'htmlmin'
     ]);
 
     grunt.registerTask('default', ['build']);
