@@ -1,8 +1,5 @@
 /**
- * We are trying to follow here some unofficial Node.js style guides [http://nodeguide.com/style.html] and framework's
- * specific good practices. For example, we are not using app.configure() to configure express because the method
- * remains for legacy reasons and it is not required [http://expressjs.com/api.html]. Info about package.json values
- * can be found [package.json.nodejitsu.com]
+ * Main application
  */
 var express = require('express');
 var http = require('http');
@@ -15,7 +12,7 @@ var server = http.createServer(app);
 var io = socketio.listen(server);
 
 // Schema and model definition before routing
-console.log('Bootstrapping the model with mongoose version: %s', mongoose.version);
+console.log('Mongoose version: %s', mongoose.version);
 require('./app/models/country');
 require('./app/models/sport');
 
@@ -24,17 +21,17 @@ console.log('Bootstrapping the routes');
 var routes = require('./app/routes/index');
 var country = require('./app/routes/country');
 
-// Load configuration according to the environment. Note app.set('env', process.env.NODE_ENV || 'development');
+// Load configuration according to the environment. 
 console.log('Loading configuration for %s environment', app.get('env'));
 var config = require('./config/credentials')[app.get('env')];
 
 // Connect to DB [see http://mongoosejs.com/docs/connections.html]
-console.log('Connecting to DB: %s', config.db.uri);
 mongoose.connect(config.db.uri, config.db.options, function (err) {
     if (err) {
-        console.warn('Connection to DB failed!'); //throw err;
+        console.warn('Connection to DB %s failed!', config.db.uri);
+        throw err;
     } else {
-        console.log('Connection to DB established');
+        console.log('Connection to DB %s established', config.db.uri);
     }
 });
 

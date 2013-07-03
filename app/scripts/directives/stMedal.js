@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('stadion').directive('stMedal', function (d3) {
+angular.module('stadion').directive('stMedal', function () {
 
     var margin = {
         top: 20,
