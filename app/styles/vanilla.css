@@ -31,7 +31,7 @@ html, body {
 }
 
 #wrap > .data-ng-view > .container {
-    padding-top: 70px;
+    padding-top: 50px;
 }
 
 /* Set the fixed height of the footer here */
@@ -81,6 +81,11 @@ html, body {
 
 .pagination ul {
     cursor: pointer;
+}
+
+.table th.cell-right,
+.table td.cell-right {
+    text-align: right;
 }
 /* Sections
 -------------------------------------------------- */
@@ -539,7 +544,7 @@ section > ul li {
     }
 
     #wrap > .data-ng-view > .container {
-        padding-top: 0;
+        padding-top: 20px;
     }
 }
 
@@ -616,7 +621,7 @@ section > ul li {
     }
 
     #wrap > .data-ng-view > .container {
-        padding-top: 0;
+        padding-top: 20px;
     }
 
 }

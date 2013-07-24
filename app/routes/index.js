@@ -3,8 +3,7 @@
  */
 
 exports.index = function (req, res) {
-//    res.render('index', { title: 'Express' });
-    res.render('/index.html', { title: 'Express' });
+    res.render('index', { title: 'Express' });
 };
 
 exports.partials = function (req, res) {

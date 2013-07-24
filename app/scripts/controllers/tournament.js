@@ -71,6 +71,46 @@ stadion.controller('TournamentViewCtrl', function ($scope, $routeParams, Tournam
         $scope.tournament = new Tournament(self.original);
     });
 
-    $scope.panes = [{name: 'asdf', content: 'aaaa'},{name: 'fafa', content: 'ffff'}];
+});
+stadion.controller('TournamentNewCtrl', function ($scope, $location, Tournament, Duel) {
+
+    // Different options to create a tournament
+    $scope.options = {
+        nums: [2,3,4,5,6,7,8],
+        types: ['Individuals', 'Couples', 'Teams'],
+        systems: [
+            {name: 'Single Round-Robin', type: 'Group Tournament'},
+            {name: 'Double Round-Robin', type: 'Group Tournament'},
+            {name: 'Single Elimination', type: 'Knock-Out Tournament'},
+            {name: 'Double Elimination', type: 'Knock-Out Tournament'},
+            {name: 'Group + Knock-Out', type: 'Multi-Stage Tournament'}
+        ]
+    };
+
+    // Set default options
+    $scope.tournament = {};
+    $scope.tournament.numOfCompetitors = $scope.options.nums[0];
+    $scope.tournament.typeOfCompetitors = $scope.options.types[0];
+
+    // Save tournament
+    $scope.save = function () {
+        $scope.tournament.competitors = [];
+        var n = $scope.tournament.numOfCompetitors;
+        for (var i=0; i<n; i++) {
+            $scope.tournament.competitors.push({seed: i+1, name: ''});
+        }
+        if ($scope.tournament.rankingSystem.name === 'Single Elimination') {
+            var duel = new Duel(n,1);
+        }
+        $scope.tournament.fixtures = [];
+        for (var i=0, l=duel.matches.length; i<l; i++) {
+            var match = duel.matches[i];
+            match.name = duel.roundName(match.id) + ' - Match ' + match.id.m;
+            $scope.tournament.fixtures.push(match);
+        }
+        Tournament.save($scope.tournament, function (d) {
+            $location.path('/tournaments/view/' + d._id.$oid);
+        });
+    };
 
 });

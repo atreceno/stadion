@@ -1,0 +1,41 @@
+.container
+    .row
+        .span12
+            h3 Create a new tournament
+            form(name='tournamentForm')
+                fieldset
+                    legend General Information
+                    .control-group(data-ng-class='{error: tournamentForm.name.$invalid}')
+                        label
+                            input(type='text', name='name', data-ng-model='tournament.name', placeholder='Name', required)
+                            span.help-inline(data-ng-show='tournamentForm.name.$error.required') Required
+                    .control-group(data-ng-class='{error: tournamentForm.sport.$invalid}')
+                        label
+                            input(type='text', name='sport', data-ng-model='tournament.sport', placeholder='Sport', required)
+                            span.help-inline(data-ng-show='tournamentForm.sport.$error.required') Required
+                    .control-group(data-ng-class='{error: tournamentForm.location.$invalid}')
+                        label
+                            input(type='text', name='location', data-ng-model='tournament.location', placeholder='Location', required)
+                            span.help-inline(data-ng-show='tournamentForm.location.$error.required') Required
+                    .control-group(data-ng-class='{error: tournamentForm.date.$invalid}')
+                        label
+                            input(type='date', name='date', data-ng-model='tournament.startDate', required)
+                            span.help-inline(data-ng-show='tournamentForm.date.$error.required') Required
+                    .control-group(data-ng-class='{error: tournamentForm.description.$invalid}')
+                        label
+                            textarea(rows='3', name='description', data-ng-model='tournament.description', placeholder='Description', required)
+                            span.help-inline(data-ng-show='tournamentForm.description.$error.required') Required
+                fieldset
+                    legend Competition Setup
+                    .control-group
+                        label
+                            select.span1(data-ng-model='tournament.numOfCompetitors', data-ng-options='n for n in options.nums')
+                            select.span3(data-ng-model='tournament.typeOfCompetitors', data-ng-options='t for t in options.types')
+                    .control-group
+                        label
+                            select.span4(data-ng-model='tournament.rankingSystem', data-ng-options='s.name group by s.type for s in options.systems')
+                                option(value='') -- Choose ranking system --
+                    br
+                    a.btn(href='#/countries') Cancel
+                    button.btn.btn-primary(data-ng-click='save()', data-ng-disabled='isClean() || tournamentForm.$invalid') Save
+                    button.btn.btn-danger(data-ng-click='destroy()', data-ng-show='tournament._id') Delete

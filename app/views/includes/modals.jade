@@ -29,3 +29,23 @@
             label.checkbox
                 input(type='checkbox', value='Remember me') Remember me
             button.btn.btn-primary(type='submit') Sign in
+#tournament.modal.hide.fade(tabindex='-1', data-ng-controller='bmCtrl')
+    form.modal-form(name='contactForm', data-ng-submit='send()')
+        .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+            h3 Contact form
+        .modal-body
+            .control-group(data-ng-class='{error: contactForm.name.$invalid}')
+                input.input-block-level(type='text', name='name', placeholder='Your name', required='required', data-ng-model='feedback.name')
+                span.help-inline(data-ng-show='contactForm.name.$error.required') Required
+            .control-group(data-ng-class='{error: contactForm.email.$invalid}')
+                input.input-block-level(type='email', name='email', placeholder='Your email', required='required', data-ng-model='feedback.email')
+                span.help-inline(data-ng-show='contactForm.email.$error.required') Required
+            .control-group(data-ng-class='{error: contactForm.message.$invalid}')
+                textarea.input-block-level(rows='4', name='message', placeholder='Message', required='required', data-ng-model='feedback.message')
+                span.help-inline(data-ng-show='contactForm.message.$error.required') Required
+                span.help-inline(data-ng-show='isSent') Thank you! Your message has been sent.
+                br
+        .modal-footer
+                button.btn(data-dismiss='modal') Close
+                button.btn.btn-primary(type='submit', data-ng-disabled='contactForm.$invalid') Send

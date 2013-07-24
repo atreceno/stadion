@@ -1,79 +1,87 @@
 header.jumbotron.subhead
     .container
-        h1 {{tournament.name}}
-            small &nbsp;{{tournament.sport}}
+        h1 {{tournament.name}} &nbsp;
+            small {{tournament.sport}}
         p {{tournament.location}}
 .container
-    br
     .row
         .span8
             .tabbable
                 ul.nav.nav-tabs
                     li.active
-                        a(href='#schedule', data-toggle='tab') Schedule
-                    li
-                        a(href='#competitors', data-toggle='tab') Competitors
+                        a(href='#fixtures', data-toggle='tab') Schedule / Results
                     li.dropdown
-                        a.dropdown-toggle(href='#', data-toggle='dropdown') Ranking
+                        a.dropdown-toggle(href='#', data-toggle='dropdown') Statistics
                             b.caret
                         ul.dropdown-menu
                             li
-                                a(href='#preliminary', data-toggle='tab') Preliminary Round
+                                a(href='#byplayer', data-toggle='tab') By player
                             li
-                                a(href='#semifinal', data-toggle='tab') Semifinal
-                            li
-                                a(href='#final', data-toggle='tab') Final
+                                a(href='#byteam', data-toggle='tab') By team
+                    li
+                        a(href='#competitors', data-toggle='tab') Competitors
                 .tab-content
-                    #schedule.tab-pane.fade.in.active
-                        p The schedule has not been confirmed yet.
-                        #schedule-list.accordion
-                            .accordion-group
-                                .accordion-heading
-                                    a.accordion-toggle(data-toggle='collapse', data-parent='#schedule-list', href='#item1') Item1
-                                #item1.accordion-body.collapse.in
-                                    .accordion-inner This is the inner
-                            .accordion-group
-                                .accordion-heading
-                                    a.accordion-toggle(data-toggle='collapse', data-parent='#schedule-list', href='#item2') Item2
-                                #item2.accordion-body.collapse.in
-                                    .accordion-inner This is the inner
-                        ul
-                            li(ng-repeat='sch in tournament.schedule') {{sch.date}} - {{sch.name}}
+                    #fixtures.tab-pane.fade.in.active
+                        p The schedule has not been confirmed yet. Testing new schedule
+                        accordion(close-others='false')
+                            accordion-group(heading='{{f.name}}',ng-repeat='f in tournament.fixtures')
+                                table.table.table-striped
+                                    thead
+                                        tr
+                                            th Competitor
+                                            th Result
+                                    tbody
+                                        tr(data-ng-repeat='p in f.p')
+                                            td {{p}}
+                                            td 3
+                        //-
+                            accordion(close-others='true')
+                                accordion-group(heading='{{phase.name}}',ng-repeat='phase in tournament.phases')
+                                    ul
+                                        li(data-ng-repeat='fixture in phase.fixtures') {{fixture.name}}
+                        //-
+                            #fixtures-list.accordion
+                                .accordion-group
+                                    .accordion-heading
+                                        a.accordion-toggle(data-toggle='collapse', data-parent='#schedule-list', href='#item1') Item1
+                                    #item1.accordion-body.collapse.in
+                                        .accordion-inner This is the inner
+                                .accordion-group
+                                    .accordion-heading
+                                        a.accordion-toggle(data-toggle='collapse', data-parent='#schedule-list', href='#item2') Item2
+                                    #item2.accordion-body.collapse.in
+                                        .accordion-inner This is the inner
+                            ul
+                                li(ng-repeat='sch in tournament.schedule') {{sch.date}} - {{sch.name}}
                     #competitors.tab-pane.fade
-                        p List of registered competitors:
-                        label
-                            input.span4(type='text', data-ng-model='query', placeholder='Search competitor')
+                        label Search competitor by name:
+                            input.span3(type='text', data-ng-model='query', placeholder='Name')
                         table.table.table-striped
                             thead
                                 tr
                                     th
+                                        a(data-ng-click='predicate=\'seed\';reverse=!reverse') &#35;
+                                    th
                                         a(data-ng-click='predicate=\'name\';reverse=!reverse') Name
-                                    th
-                                        a(data-ng-click='predicate=\'gender\';reverse=!reverse') Gender
-                                    th
-                                        a(data-ng-click='predicate=\'country\';reverse=!reverse') Country
-                                    th
+                                    th.cell-right
                                         a(href='#/tournaments/new')
                                             i.icon-plus-sign
                             tbody
                                 tr(data-ng-repeat='cmp in tournament.competitors | filter:query | orderBy:predicate:reverse')
-                                    td {{cmp.firstName}} {{cmp.lastName}}
-                                    td {{cmp.gender}}
-                                    td {{cmp.country}}
-                                    td
+                                    td {{cmp.seed}}
+                                    td {{cmp.name}}
+                                    td.cell-right
                                         a(href='#/tournaments/edit/{{cmp._id.$oid}}')
                                             i.icon-pencil
                         
                         
-                    #preliminary.tab-pane.fade
-                        p This is the preliminary round. Ranking: ...
-                    #semifinal.tab-pane.fade
-                        p This is the semifinal round. Ranking: ...
-                    #final.tab-pane.fade
-                        p This is the final round. Ranking: ...
+                    #byplayer.tab-pane.fade
+                        p By Player. Comming soon...
+                    #byteam.tab-pane.fade
+                        p By Team. Comming soon...
         .span4
             .alert.alert-info
-                h4 Competition Information
+                h4 General Information
                 dl.dl-horizontal
                     dt
                         i.icon-map-marker
@@ -84,3 +92,15 @@ header.jumbotron.subhead
                     dt
                         i.icon-align-left
                     dd {{tournament.description}}
+            .alert.alert-info
+                h4 Competition Setup
+                dl.dl-horizontal
+                    dt
+                        i.icon-user
+                    dd {{tournament.numOfCompetitors}} {{tournament.typeOfCompetitors}}
+                    dt
+                        i.icon-cog
+                    dd {{tournament.rankingSystem.name}}
+                    dt
+                        i.icon-random
+                    dd Blah,blah

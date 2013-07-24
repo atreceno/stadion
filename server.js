@@ -14,12 +14,14 @@ var io = socketio.listen(server);
 // Schema and model definition before routing
 console.log('Mongoose version: %s', mongoose.version);
 require('./app/models/country');
+require('./app/models/tournament');
 require('./app/models/sport');
 
 // Routes definition after bootstrapping the model
 console.log('Bootstrapping the routes');
 var routes = require('./app/routes/index');
 var country = require('./app/routes/country');
+var tournament = require('./app/routes/tournament');
 
 // Load configuration according to the environment. 
 console.log('Loading configuration for %s environment', app.get('env'));
@@ -49,6 +51,7 @@ app.use(app.router);
 
 if ('development' == app.get('env')) {
     app.use(express.static(path.join(__dirname, 'app')));
+    app.use(express.static(path.join(__dirname, '.tmp')));
     app.use(express.errorHandler());
     app.locals.pretty = 'true';
 }
@@ -69,11 +72,16 @@ app.get('/*', function(req, res, next) {
 
 // Offer REST API
 //app.get('/', routes.index);
+//app.get('/', function (req, res) {
+//    res.end('Wohoo!');
+//});
 app.get('/api/countries', country.findAll);
 app.get('/api/countries/:id', country.findOne);
 app.post('/api/countries', country.addNew);
 app.put('/api/countries/:id', country.modify);
 app.delete('/api/countries/:id', country.delete);
+
+app.get('/api/tournaments', tournament.findAll);
 
 // Socket.io
 var data = [
