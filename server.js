@@ -25,7 +25,7 @@ var tournament = require('./app/routes/tournament');
 
 // Load configuration according to the environment. 
 console.log('Loading configuration for %s environment', app.get('env'));
-var config = require('./config/credentials')[app.get('env')];
+var config = require('./config/credentials.js')[app.get('env')];
 
 // Connect to DB [see http://mongoosejs.com/docs/connections.html]
 mongoose.connect(config.db.uri, config.db.options, function (err) {
