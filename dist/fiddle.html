@@ -1,0 +1,7 @@
+<!DOCTYPE html><html><head><title>Backdoor to run some tests</title><meta charset="utf8"><style type="text/css">body {
+          padding-top: 20px;
+          padding-bottom: 20px;
+      }
+      div.sec {
+          background-color: #ccc;
+      }</style></head><body data-ng-app="fiddle"><div data-ng-controller="someCtrl" data-ng-show="false" class="sec"><p>countCallback: {{countCallback}}</p><p>countReturn: {{countReturn}}</p><p>countReturn2: {{countReturn2}}</p><p>countPromise: {{countPromise}}</p><p>countThen: {{countThen}}</p></div><div data-ng-controller="someCtrl" class="sec"><p>{{message}}</p></div><script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script><script src="scripts/fiddle.js"></script></body></html>
