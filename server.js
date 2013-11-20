@@ -25,15 +25,27 @@ var tournament = require('./app/routes/tournament');
 
 // Load configuration according to the environment. 
 console.log('Loading configuration for %s environment', app.get('env'));
-var config = require('./config/credentials.js')[app.get('env')];
+/* var config = require('./config/credentials')[app.get('env')]; */
 
 // Connect to DB [see http://mongoosejs.com/docs/connections.html]
+/*
 mongoose.connect(config.db.uri, config.db.options, function (err) {
     if (err) {
         console.warn('Connection to DB %s failed!', config.db.uri);
         throw err;
     } else {
         console.log('Connection to DB %s established', config.db.uri);
+    }
+});
+*/
+
+var mongolab_uri = process.env['MONGOLAB_URI'];
+mongoose.connect(mongolab_uri, function (err) {
+    if (err) {
+        console.warn('Connection to DB %s failed!', mongolab_uri);
+        throw err;
+    } else {
+        console.log('Connection to DB %s established', mongolab_uri);
     }
 });
 
