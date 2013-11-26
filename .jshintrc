@@ -20,6 +20,10 @@
     "smarttabs": true,
     "globals": {
         "angular": false,
-        "d3": false
+        "d3": false,
+        "describe": false,
+        "it": false,
+        "expect": false,
+        "beforeEach": false
     }
 }

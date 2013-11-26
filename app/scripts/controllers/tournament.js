@@ -10,7 +10,7 @@ stadion.controller('TournamentListCtrl', function ($scope, $routeParams, $locati
     $scope.predicates = ['name', 'location', 'sport'];
     $scope.itemsPerPage = [25, 50, 100];
     $scope.sports = Sport.query({f:JSON.stringify({_id:0,name:1})});
-    $scope.locations = ['London, UK'];
+    $scope.locations = ['London, UK', 'Madrid, Spain'];
 
     // Default values
     $scope.currentPage = 1;
@@ -99,6 +99,10 @@ stadion.controller('TournamentNewCtrl', function ($scope, $location, Tournament,
         for (var i=0; i<n; i++) {
             $scope.tournament.competitors.push({seed: i+1, name: ''});
         }
+
+        var duel = new Duel(n,1);
+        console.log(duel.matches.length);
+        /*
         if ($scope.tournament.rankingSystem.name === 'Single Elimination') {
             var duel = new Duel(n,1);
         }
@@ -111,6 +115,7 @@ stadion.controller('TournamentNewCtrl', function ($scope, $location, Tournament,
         Tournament.save($scope.tournament, function (d) {
             $location.path('/tournaments/view/' + d._id.$oid);
         });
+        */
     };
 
 });
