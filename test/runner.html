@@ -2,9 +2,45 @@
 <html lang="en">
 <head>
     <title>End2end Test Runner</title>
-    <script src="vendor/angular-scenario.js" data-ng-autotest></script>
-    <script src="scenarios.js"></script>
+    <script src="../app/components/angular/angular.js"></script>
+    <script src="../app/components/angular-resource/angular-resource.js"></script>
+    <script src="../app/components/angular-mocks/angular-mocks.js"></script>
+    <script src="../app/components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="../app/components/d3/d3.min.js"></script>
+    <script src="../app/scripts/app.js"></script>
+    <script src="../app/scripts/controllers/main.js"></script>
+    <script src="../app/scripts/services/mongo-lab-api.js"></script>
+    <script src="../app/scripts/controllers/tournament.js"></script>
+    <script src="../app/components/es5-shim/tests/lib/jasmine.js"></script>
+    <script src="../app/components/es5-shim/tests/lib/jasmine-html.js"></script>
+    <script src="../test/spec/controllers/tournament.js"></script>
+    <link rel="stylesheet" href="../app/components/es5-shim/tests/lib/jasmine.css" />
+<script>
+(function() {
+  var jasmineEnv = jasmine.getEnv();
+  jasmineEnv.updateInterval = 250;
+  var htmlReporter = new jasmine.HtmlReporter();
+  jasmineEnv.addReporter(htmlReporter);
+  jasmineEnv.specFilter = function(spec) {
+    return htmlReporter.specFilter(spec);
+  };
+ 
+  var currentWindowOnload = window.onload;
+  window.onload = function() {
+    if (currentWindowOnload) {
+      currentWindowOnload();
+    }
+    document.querySelector('.version').innerHTML = jasmineEnv.versionString();
+    execJasmine();
+  };
+  
+  function execJasmine() {
+    jasmineEnv.execute();
+  }
+})();
+</script>
 </head>
 <body>
+test
 </body>
 </html>
