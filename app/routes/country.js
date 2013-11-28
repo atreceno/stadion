@@ -44,13 +44,18 @@ exports.addNew = function (req, res) {
 
 exports.modify = function (req, res) {
 
-    var country = new Country(req.body);
-    country.save(function (err, data) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(data);
-        }
+    Country.findById(req.params.id, function (err, data) {
+        data.name = req.body.name;
+        data.gold = req.body.gold;
+        data.silver = req.body.silver;
+        data.bronze = req.body.bronze;
+        data.save(function (err) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(data);
+            }
+        });
     });
 
 };

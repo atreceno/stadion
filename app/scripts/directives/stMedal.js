@@ -27,6 +27,7 @@ angular.module('stadion').directive('stMedal', function () {
         restrict: 'A',
         link: function postLink(scope, element, attrs) {
 
+            console.log(attrs);
             var svg = d3.select(element[0]).append('svg')
                 .attr('viewBox', '0 0 700 350')
                 .attr('preserveAspectRatio', 'xMinYMin meet')
