@@ -95,6 +95,10 @@ app.put('/api/countries/:id', country.modify);
 app.delete('/api/countries/:id', country.delete);
 
 app.get('/api/tournaments', tournament.findAll);
+app.get('/api/tournaments/:id', tournament.findOne);
+app.post('/api/tournaments', tournament.addNew);
+app.put('/api/tournaments/:id', tournament.modify);
+app.delete('/api/tournaments/:id', tournament.delete);
 
 // Socket.io
 var data = [
