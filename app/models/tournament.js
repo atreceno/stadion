@@ -18,7 +18,8 @@ var Phase = Schema({
 
 var Competitor = Schema({
     seed: {type: String, required: true}, 
-    name: {type: String, required: true}
+    name: {type: String, required: true},
+    result: {type: Number, required: false}
 }, {_id: false});
 
 var tournamentSchema = Schema({

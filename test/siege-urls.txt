@@ -1,4 +1,0 @@
-BASE_URL=api.mongolab.com/api/1/databases/stadion/collections
-API_KEY=yjCay7qWRojHdBsbhp13CJegJRnzbkTJ
-https://$(BASE_URL)/tournaments?apiKey=$(API_KEY)&f={name:1,description:1,location:1,sport:1}&l=25&q={name:{$regex:pistol,$options:i},sport:Shooting}&s={name:1}&sk=0
-https://$(BASE_URL)/tournaments?apiKey=$(API_KEY)&f={name:1,description:1,location:1,sport:1}&l=25&q={name:{$regex:100m,$options:i},sport:Athletics}&s={name:1}&sk=0
