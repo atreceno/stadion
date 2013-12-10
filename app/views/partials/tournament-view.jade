@@ -22,8 +22,13 @@ header.jumbotron.subhead
                         a(href='#competitors', data-toggle='tab') Competitors
                 .tab-content
                     #fixtures.tab-pane.fade.in.active
-                        p The schedule has not been confirmed yet. Testing new schedule
+                        p Phases:
                         accordion(close-others='false')
+                            accordion(close-others='true')
+                                accordion-group(heading='{{phase.name}}',ng-repeat='phase in tournament.phases')
+                                    ul
+                                        li(data-ng-repeat='fixture in phase.fixtures') {{fixture.name}}
+                        //-
                             accordion-group(heading='{{f.name}}',ng-repeat='f in tournament.fixtures')
                                 table.table.table-striped
                                     thead
@@ -34,11 +39,6 @@ header.jumbotron.subhead
                                         tr(data-ng-repeat='p in f.p')
                                             td {{p}}
                                             td 3
-                        //-
-                            accordion(close-others='true')
-                                accordion-group(heading='{{phase.name}}',ng-repeat='phase in tournament.phases')
-                                    ul
-                                        li(data-ng-repeat='fixture in phase.fixtures') {{fixture.name}}
                         //-
                             #fixtures-list.accordion
                                 .accordion-group
@@ -63,6 +63,9 @@ header.jumbotron.subhead
                                         a(data-ng-click='predicate=\'seed\';reverse=!reverse') &#35;
                                     th
                                         a(data-ng-click='predicate=\'name\';reverse=!reverse') Name
+                                    th
+                                        a(data-ng-click='predicate=\'result\';reverse=!reverse') Result
+                                //-
                                     th.cell-right
                                         a(href='#/tournaments/new')
                                             i.icon-plus-sign
@@ -70,6 +73,8 @@ header.jumbotron.subhead
                                 tr(data-ng-repeat='cmp in tournament.competitors | filter:query | orderBy:predicate:reverse')
                                     td {{cmp.seed}}
                                     td {{cmp.name}}
+                                    td {{cmp.result}}
+                                //-
                                     td.cell-right
                                         a(href='#/tournaments/edit/{{cmp._id.$oid}}')
                                             i.icon-pencil
@@ -95,12 +100,12 @@ header.jumbotron.subhead
             .alert.alert-info
                 h4 Competition Setup
                 dl.dl-horizontal
-                    dt
+                    dt(title='Number of competitors')
                         i.icon-user
-                    dd {{tournament.numOfCompetitors}} {{tournament.typeOfCompetitors}}
-                    dt
+                    dd {{tournament.competitors.length}}
+                    dt(title='Tournament type')
                         i.icon-cog
-                    dd {{tournament.rankingSystem.name}}
-                    dt
+                    dd {{tournament.type}}
+                    dt(title='Number of phases')
                         i.icon-random
-                    dd Blah,blah
+                    dd {{tournament.phases.length}}
